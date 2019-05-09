@@ -149,40 +149,6 @@ def me_too(bot: Bot, update: Update):
         message.reply_text(reply)
         
         
-@run_async
-def deepfryer(bot: Bot, update: Update):
-    message = update.effective_message
-    if message.reply_to_message:
-        data = message.reply_to_message.photo
-    else:
-        data = []
-     # check if message does contain a photo and cancel when not
-    if not data:
-        message.reply_text("What am I supposed to do with this?!")
-        return
-     # download last photo (highres) as byte array
-    photodata = data[len(data) - 1].get_file().download_as_bytearray()
-    image = Image.open(io.BytesIO(photodata))
-     # the following needs to be executed async (because dumb lib)
-    loop = asyncio.new_event_loop()
-    loop.run_until_complete(process_deepfry(image, message.reply_to_message, bot))
-    loop.close()
-
-async def process_deepfry(image: Image, reply: Message, bot: Bot):
-    # DEEPFRY IT
-    image = await deepfry(
-        img=image,
-        token=os.getenv('DEEPFRY_TOKEN', ''),
-        url_base='westeurope'
-    )
-    bio = BytesIO()
-    bio.name = 'image.jpeg'
-    image.save(bio, 'JPEG')
-
-     # send it back
-    bio.seek(0)
-    reply.reply_photo(bio)
-        
 __help__ = """
 - Reply to a text with /🅱️ or /😂 or /👏
 - You can also use the text version of these : /bmoji or /copypasta or /clapmoji
@@ -209,7 +175,6 @@ STRETCH_HANDLER = DisableAbleCommandHandler("stretch", stretch)
 VAPOR_HANDLER = DisableAbleCommandHandler("vapor", vapor, pass_args=True)
 MOCK_HANDLER = DisableAbleCommandHandler("mock", spongemocktext, admin_ok=True)
 ME_TOO_THANKS_HANDLER = DisableAbleRegexHandler(r"(?i)me too", me_too, friendly="me_too")
-DEEPFRY_HANDLER = DisableAbleCommandHandler("deepfry", deepfryer, admin_ok=True)
 
 
 dispatcher.add_handler(COPYPASTA_HANDLER)
@@ -227,4 +192,3 @@ dispatcher.add_handler(STRETCH_HANDLER)
 dispatcher.add_handler(VAPOR_HANDLER)
 dispatcher.add_handler(MOCK_HANDLER)
 dispatcher.add_handler(ME_TOO_THANKS_HANDLER)
-dispatcher.add_handler(DEEPFRY_HANDLER)
