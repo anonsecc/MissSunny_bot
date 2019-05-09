@@ -2,7 +2,6 @@ import random, re
 from io import BytesIO
 from spongemock import spongemock
 from spongemock import spongemock
-from zalgo_text import zalgo
 from typing import Optional, List
 from telegram import Message, Update, Bot, User
 from pathlib import Path
