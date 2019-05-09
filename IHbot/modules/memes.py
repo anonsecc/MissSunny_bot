@@ -53,6 +53,33 @@ def clapmoji(bot: Bot, update: Update):
     reply_text += message.reply_to_message.text.replace(" ", " 👏 ")
     reply_text += " 👏"
     message.reply_to_message.reply_text(reply_text)
+    
+    
+@run_async
+def angrymoji(bot: Bot, update: Update):
+    message = update.effective_message
+    reply_text = "😡 "
+    for i in message.reply_to_message.text:
+        if i == " ":
+            reply_text += " 😡 "
+        else:
+            reply_text += i
+    reply_text += " 😡"
+    message.reply_to_message.reply_text(reply_text)
+    
+    
+@run_async
+def crymoji(bot: Bot, update: Update):
+    message = update.effective_message
+    reply_text = "😭 "
+    for i in message.reply_to_message.text:
+        if i == " ":
+            reply_text += " 😭 "
+        else:
+            reply_text += i
+    reply_text += " 😭"
+    message.reply_to_message.reply_text(reply_text)
+
 
 
 @run_async
@@ -120,7 +147,42 @@ def me_too(bot: Bot, update: Update):
     if random.randint(0, 100) > 60:
         reply = random.choice(["Me too thanks", "Haha yes, me too", "Same lol", "Me irl"])
         message.reply_text(reply)
+        
+        
+@run_async
+def deepfryer(bot: Bot, update: Update):
+    message = update.effective_message
+    if message.reply_to_message:
+        data = message.reply_to_message.photo
+    else:
+        data = []
+     # check if message does contain a photo and cancel when not
+    if not data:
+        message.reply_text("What am I supposed to do with this?!")
+        return
+     # download last photo (highres) as byte array
+    photodata = data[len(data) - 1].get_file().download_as_bytearray()
+    image = Image.open(io.BytesIO(photodata))
+     # the following needs to be executed async (because dumb lib)
+    loop = asyncio.new_event_loop()
+    loop.run_until_complete(process_deepfry(image, message.reply_to_message, bot))
+    loop.close()
 
+async def process_deepfry(image: Image, reply: Message, bot: Bot):
+    # DEEPFRY IT
+    image = await deepfry(
+        img=image,
+        token=os.getenv('DEEPFRY_TOKEN', ''),
+        url_base='westeurope'
+    )
+    bio = BytesIO()
+    bio.name = 'image.jpeg'
+    image.save(bio, 'JPEG')
+
+     # send it back
+    bio.seek(0)
+    reply.reply_photo(bio)
+        
 __help__ = """
 - Reply to a text with /🅱️ or /😂 or /👏
 - You can also use the text version of these : /bmoji or /copypasta or /clapmoji
@@ -136,18 +198,28 @@ COPYPASTA_HANDLER = DisableAbleCommandHandler("copypasta", copypasta)
 COPYPASTA_ALIAS_HANDLER = DisableAbleCommandHandler("😂", copypasta)
 CLAPMOJI_HANDLER = DisableAbleCommandHandler("clapmoji", clapmoji)
 CLAPMOJI_ALIAS_HANDLER = DisableAbleCommandHandler("👏", clapmoji)
-BMOJI_HANDLER = DisableAbleCommandHandler("🅱", bmoji)
+ANGRYMOJI_HANDLER = DisableAbleCommandHandler("angrymoji", angrymoji)
+ANGRYMOJI_ALIAS_HANDLER = DisableAbleCommandHandler("😡", angrymoji)
+CRYMOJI_HANDLER = DisableAbleCommandHandler("crymoji", crymoji)
+CRYMOJI_ALIAS_HANDLER = DisableAbleCommandHandler("😭", crymoji)
+BMOJI_HANDLER = DisableAbleCommandHandler("🅱️", bmoji)
 BMOJI_ALIAS_HANDLER = DisableAbleCommandHandler("bmoji", bmoji)
 OWO_HANDLER = DisableAbleCommandHandler("owo", owo)
 STRETCH_HANDLER = DisableAbleCommandHandler("stretch", stretch)
 VAPOR_HANDLER = DisableAbleCommandHandler("vapor", vapor, pass_args=True)
 MOCK_HANDLER = DisableAbleCommandHandler("mock", spongemocktext, admin_ok=True)
 ME_TOO_THANKS_HANDLER = DisableAbleRegexHandler(r"(?i)me too", me_too, friendly="me_too")
+DEEPFRY_HANDLER = DisableAbleCommandHandler("deepfry", deepfryer, admin_ok=True)
+
 
 dispatcher.add_handler(COPYPASTA_HANDLER)
 dispatcher.add_handler(COPYPASTA_ALIAS_HANDLER)
 dispatcher.add_handler(CLAPMOJI_HANDLER)
 dispatcher.add_handler(CLAPMOJI_ALIAS_HANDLER)
+dispatcher.add_handler(ANGRYMOJI_HANDLER)
+dispatcher.add_handler(ANGRYMOJI_ALIAS_HANDLER)
+dispatcher.add_handler(CRYMOJI_HANDLER)
+dispatcher.add_handler(CRYMOJI_ALIAS_HANDLER)
 dispatcher.add_handler(BMOJI_HANDLER)
 dispatcher.add_handler(BMOJI_ALIAS_HANDLER)
 dispatcher.add_handler(OWO_HANDLER)
@@ -155,3 +227,4 @@ dispatcher.add_handler(STRETCH_HANDLER)
 dispatcher.add_handler(VAPOR_HANDLER)
 dispatcher.add_handler(MOCK_HANDLER)
 dispatcher.add_handler(ME_TOO_THANKS_HANDLER)
+dispatcher.add_handler(DEEPFRY_HANDLER)
