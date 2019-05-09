@@ -12,9 +12,9 @@ import requests
 from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram import ParseMode
 from telegram.ext import CommandHandler, run_async, Filters
-from tg_bot import dispatcher
-from tg_bot.__main__ import STATS, USER_INFO
-from tg_bot.modules.disable import DisableAbleCommandHandler
+from IHbot import dispatcher
+from IHbot.__main__ import STATS, USER_INFO
+from IHbot.modules.disable import DisableAbleCommandHandler
 
 def butts(bot: Bot, update: Update):
     nsfw = requests.get('http://api.obutts.ru/noise/1').json()[0]["preview"]
