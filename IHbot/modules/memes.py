@@ -1,10 +1,12 @@
 import random, re
+from PIL import Image
+from io import BytesIO
 from spongemock import spongemock
-
 from typing import Optional, List
 from telegram import Message, Update, Bot, User
 from telegram import MessageEntity
 from telegram.ext import Filters, MessageHandler, run_async
+from deeppyer import deepfry
 
 from IHbot import dispatcher
 from IHbot.modules.disable import DisableAbleCommandHandler, DisableAbleRegexHandler
