@@ -18,8 +18,6 @@ from IHbot.modules.helper_funcs.misc import send_to_list
 from IHbot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from IHbot.modules.helper_funcs.string_handling import markdown_parser
 
-import IHbot.modules.sql.feds_sql as sql
-
 from IHbot.modules.translations.strings import tld
 
 from IHbot.modules.connection import connected
