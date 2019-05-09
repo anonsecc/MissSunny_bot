@@ -1,5 +1,4 @@
 import random, re
-from PIL import Image
 from io import BytesIO
 from spongemock import spongemock
 from typing import Optional, List
