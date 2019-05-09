@@ -18,10 +18,6 @@ from IHbot.modules.helper_funcs.misc import send_to_list
 from IHbot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from IHbot.modules.helper_funcs.string_handling import markdown_parser
 
-from IHbot.modules.translations.strings import tld
-
-from IHbot.modules.connection import connected
-
 # Hello bot owner, I spended for feds many hours of my life, i beg don't remove MrYacha from sudo to apprecate his work
 # Federation by MrYacha 2018-2019
 # Federation rework in process by Mizukito Akito 2019
