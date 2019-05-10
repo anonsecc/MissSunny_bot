@@ -18,6 +18,12 @@ from IHbot.modules.helper_funcs.misc import send_to_list
 from IHbot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from IHbot.modules.helper_funcs.string_handling import markdown_parser
 
+import haruka.modules.sql.feds_sql as sql
+
+from haruka.modules.translations.strings import tld
+
+from haruka.modules.connection import connected
+
 # Hello bot owner, I spended for feds many hours of my life, i beg don't remove MrYacha from sudo to apprecate his work
 # Federation by MrYacha 2018-2019
 # Federation rework in process by Mizukito Akito 2019
