@@ -19,8 +19,6 @@ from IHbot.modules.helper_funcs.filters import CustomFilters
 from IHbot.modules.helper_funcs.chat_status import bot_admin, user_admin, can_restrict
 from IHbot.modules.sql.safemode_sql import set_safemode, is_safemoded
 
-from IHbot.modules.translations.strings import tld
-
 from geopy.geocoders import Nominatim
 from telegram import Location
 
@@ -237,9 +235,9 @@ def get_id(bot: Bot, update: Update, args: List[str]):
 
 @run_async
 def info(bot: Bot, update: Update, args: List[str]):
+    bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
     msg = update.effective_message  # type: Optional[Message]
     user_id = extract_user(update.effective_message, args)
-    chat = update.effective_chat  # type: Optional[Chat]
 
     if user_id:
         user = bot.get_chat(user_id)
@@ -250,7 +248,7 @@ def info(bot: Bot, update: Update, args: List[str]):
     elif not msg.reply_to_message and (not args or (
             len(args) >= 1 and not args[0].startswith("@") and not args[0].isdigit() and not msg.parse_entities(
         [MessageEntity.TEXT_MENTION]))):
-        msg.reply_text("I can't extract a user from this :(")
+        msg.reply_text("I can't extract a user from this.")
         return
 
     else:
@@ -269,7 +267,7 @@ def info(bot: Bot, update: Update, args: List[str]):
     text += "\nPermanent user link: {}".format(mention_html(user.id, "link"))
 
     if user.id == OWNER_ID:
-        text += "\n\nThis person is my owner - So don't Mess with him!"
+        text += "\n\nMy master - I would never do anything against him!"
     else:
         if user.id in SUDO_USERS:
             text += "\nThis person is one of my sudo users! " \
@@ -277,14 +275,14 @@ def info(bot: Bot, update: Update, args: List[str]):
         else:
             if user.id in SUPPORT_USERS:
                 text += "\nThis person is one of my support users! " \
-                        "Not quite a sudo user, but can still gban you off the map."
+                        "Not quite a sudo user, but can still gban, gmute and also can gkick you off the map."
 
             if user.id in WHITELIST_USERS:
                 text += "\nThis person has been whitelisted! " \
                         "That means I'm not allowed to ban/kick them."
 
     for mod in USER_INFO:
-        mod_info = mod.__user_info__(user_id).strip()
+        mod_info = mod.__user_info__(user.id).strip()
         if mod_info:
             text += "\n\n" + mod_info
 
