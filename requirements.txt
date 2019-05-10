@@ -10,3 +10,15 @@ pyowm
 spongemock
 geopy
 PyLyrics
+pythonping
+#memes from SkittBot
+zalgo-text
+nltk
+aiohttp>=2.2.5
+Pillow>=4.2.0
+#Cool stuff by Peak
+#AEX
+hurry.filesize
+#translator
+py_translator
+beautifulsoup4==4.6.3
