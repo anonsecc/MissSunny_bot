@@ -1,5 +1,6 @@
 import hashlib
 import os
+from PIL import Image
 from typing import Optional, List
 from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram import TelegramError
