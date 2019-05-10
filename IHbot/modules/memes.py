@@ -13,6 +13,11 @@ from telegram import Message, Update, Bot, User
 from telegram import MessageEntity
 from telegram.ext import Filters, MessageHandler, run_async
 
+import nltk # shitty lib, but it does work
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
+
 from IHbot import dispatcher
 from IHbot.modules.disable import DisableAbleCommandHandler, DisableAbleRegexHandler
 
