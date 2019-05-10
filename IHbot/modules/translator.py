@@ -7,7 +7,7 @@ from telegram.ext import Filters, MessageHandler, run_async
 from IHbot import dispatcher, LOGGER
 from IHbot.modules.disable import DisableAbleCommandHandler
 
-from translator.py import Translator
+from py_translator import Translator
 
 
 @run_async
