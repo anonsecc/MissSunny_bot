@@ -1,4 +1,4 @@
-import random, re
+import random, re, string, io, asyncio
 from io import BytesIO
 from spongemock import spongemock
 from typing import Optional, List
