@@ -4,10 +4,10 @@ from telegram import Message, Update, Bot, User
 from telegram import MessageEntity
 from telegram.ext import Filters, MessageHandler, run_async
 
-from haruka import dispatcher, LOGGER
-from haruka.modules.disable import DisableAbleCommandHandler
+from IHbot import dispatcher, LOGGER
+from IHbot.modules.disable import DisableAbleCommandHandler
 
-from py_translator import Translator
+from translator.py import Translator
 
 
 @run_async
