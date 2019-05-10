@@ -239,6 +239,7 @@ def get_id(bot: Bot, update: Update, args: List[str]):
 def info(bot: Bot, update: Update, args: List[str]):
     msg = update.effective_message  # type: Optional[Message]
     user_id = extract_user(update.effective_message, args)
+    chat = update.effective_chat  # type: Optional[Chat]
 
     if user_id:
         user = bot.get_chat(user_id)
