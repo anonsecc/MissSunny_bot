@@ -1,4 +1,4 @@
-from haruka import dispatcher
+from IHbot import dispatcher
 
 RUN_STRINGS = (
     "Куди ти зібрався?",
