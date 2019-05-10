@@ -4,6 +4,7 @@ from spongemock import spongemock
 from typing import Optional, List
 from telegram import Message, Update, Bot, User
 from pathlib import Path
+from zalgo_text import zalgo
 import glob
 import os
 
