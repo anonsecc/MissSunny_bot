@@ -284,7 +284,7 @@ def info(bot: Bot, update: Update, args: List[str]):
                         "That means I'm not allowed to ban/kick them."
 
     for mod in USER_INFO:
-        mod_info = mod.__user_info__(chat_id).strip()
+        mod_info = mod.__user_info__(user_id,chat_id).strip()
         if mod_info:
             text += "\n\n" + mod_info
 
