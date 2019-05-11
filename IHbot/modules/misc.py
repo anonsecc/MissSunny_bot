@@ -19,6 +19,8 @@ from IHbot.modules.helper_funcs.filters import CustomFilters
 from IHbot.modules.helper_funcs.chat_status import bot_admin, user_admin, can_restrict
 from IHbot.modules.sql.safemode_sql import set_safemode, is_safemoded
 
+from IHbot.modules.translations.strings import tld
+
 from geopy.geocoders import Nominatim
 from telegram import Location
 
