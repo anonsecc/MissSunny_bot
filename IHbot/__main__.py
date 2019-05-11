@@ -17,6 +17,9 @@ from IHbot import dispatcher, updater, TOKEN, WEBHOOK, OWNER_ID, DONATION_LINK, 
 from IHbot.modules import ALL_MODULES
 from IHbot.modules.helper_funcs.chat_status import is_user_admin
 from IHbot.modules.helper_funcs.misc import paginate_modules
+from IHbot.modules.translations.strings import tld, tld_help
+from IHbot.modules.connection import connected
+
 
 PM_START_TEXT = """
 Hello {}, my name is {}!
