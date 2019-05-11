@@ -88,8 +88,6 @@ def del_fed(bot: Bot, update: Update, args: List[str]):
 
         sql.del_fed(fed_id, chat.id)
         update.effective_message.reply_text(tld(chat.id, "Deleted!"))
-        else:
-                update.effective_message.reply_text("Please write federation id to remove!")
 
 
 def join_fed(bot: Bot, update: Update, args: List[str]):
