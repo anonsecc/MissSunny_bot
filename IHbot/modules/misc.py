@@ -14,7 +14,7 @@ from telegram import ParseMode
 from telegram.ext import CommandHandler, run_async, Filters
 from telegram.utils.helpers import escape_markdown, mention_html
 
-from IHbot import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, WHITELIST_USERS, BAN_STICKER, MAPS_API, API_WEATHER
+from IHbot import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, WHITELIST_USERS, BAN_STICKER
 from IHbot.__main__ import GDPR
 from IHbot.__main__ import STATS, USER_INFO
 from IHbot.modules.disable import DisableAbleCommandHandler
@@ -24,9 +24,6 @@ from IHbot.modules.helper_funcs.filters import CustomFilters
 from IHbot.modules.sql.translation import prev_locale
 
 from IHbot.modules.translations.strings import tld
-
-GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
-GMAPS_TIME = "https://maps.googleapis.com/maps/api/timezone/json"
 
 
 @run_async
