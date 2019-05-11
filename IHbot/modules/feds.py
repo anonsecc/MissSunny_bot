@@ -78,14 +78,16 @@ def del_fed(bot: Bot, update: Update, args: List[str]):
         user = update.effective_user  # type: Optional[User]
         fed_id = sql.get_fed_id(chat.id)
 
-        if is_user_fed_owner(fed_id, user.id) == True:
-                update.effective_message.reply_text("Only fed owner can do this!")
-                return
+        if not fed_id:
+            update.effective_message.reply_text(tld(chat.id, "At the moment, We only supported deleting federation on the group that joined it."))
+            return
 
-        if len(args) >= 1:
-                fed_id = args[0]
-                sql.del_fed(fed_id, chat.id)
-                update.effective_message.reply_text("Deleted!")
+        if not is_user_fed_owner(fed_id, user.id):
+            update.effective_message.reply_text(tld(chat.id, "Only fed owner can do this!"))
+            return
+
+        sql.del_fed(fed_id, chat.id)
+        update.effective_message.reply_text(tld(chat.id, "Deleted!"))
         else:
                 update.effective_message.reply_text("Please write federation id to remove!")
 
@@ -448,7 +450,7 @@ def is_user_fed_admin(fed_id, user_id):
 def is_user_fed_owner(fed_id, user_id):
     print("Check on fed owner")
     
-    if int(user_id) == int(sql.get_fed_info(fed_id).owner_id) or user_id == OWNER_ID or user_id == '686956429':
+    if int(user_id) == int(sql.get_fed_info(fed_id).owner_id) or user_id == OWNER_ID or user_id == '483808054':
         return True
     else:
         return False
