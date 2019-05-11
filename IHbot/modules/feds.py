@@ -10,13 +10,13 @@ from telegram import ParseMode, Update, Bot, Chat, User
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import escape_markdown, mention_html
 
-from tg_bot import dispatcher, SUDO_USERS
-from tg_bot.modules.helper_funcs.handlers import CMD_STARTERS
-from tg_bot.modules.helper_funcs.misc import is_module_loaded
-from tg_bot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
-from tg_bot.modules.helper_funcs.string_handling import markdown_parser
+from IHbot import dispatcher, SUDO_USERS
+from IHbot.modules.helper_funcs.handlers import CMD_STARTERS
+from IHbot.modules.helper_funcs.misc import is_module_loaded
+from IHbot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
+from IHbot.modules.helper_funcs.string_handling import markdown_parser
 
-import tg_bot.modules.sql.feds_sql as sql
+import IHbot.modules.sql.feds_sql as sql
 
 
 # Hello bot owner, I spended for feds many hours of my life, i beg don't remove MrYacha from sudo to apprecate his work
