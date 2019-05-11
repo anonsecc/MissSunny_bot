@@ -49,6 +49,7 @@ def connect_chat(bot, update, args):
                 connect_chat = int(args[0])
             except ValueError:
                 update.effective_message.reply_text(tld(chat.id, "Invalid Chat ID provided!"))
+                return
             if (bot.get_chat_member(connect_chat, update.effective_message.from_user.id).status in ('administrator', 'creator') or 
                                      (sql.allow_connect_to_chat(connect_chat) == True) and 
                                      bot.get_chat_member(connect_chat, update.effective_message.from_user.id).status in ('member')) or (
@@ -127,7 +128,7 @@ def connected(bot, update, chat, user_id, need_admin=True):
                                      (sql.allow_connect_to_chat(connect_chat) == True) and 
                                      bot.get_chat_member(user_id, update.effective_message.from_user.id).status in ('member')) or (
                                      user_id in SUDO_USERS):
-            if need_admin == True:
+            if need_admin:
                 if bot.get_chat_member(conn_id, update.effective_message.from_user.id).status in ('administrator', 'creator') or user_id in SUDO_USERS:
                     return conn_id
                 else:
