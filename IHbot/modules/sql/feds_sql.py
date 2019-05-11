@@ -302,12 +302,3 @@ def get_all_feds_users_global():
 
         SESSION.close()
         return h
-
-def search_fed_by_id(fed_id):
-        curr = SESSION.query(Federations).all()
-        result = False
-        for Q in curr:
-                if Q.fed_id == fed_id:
-                        result = Q.fed_id
-
-        return result
