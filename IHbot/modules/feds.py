@@ -56,10 +56,7 @@ def new_fed(bot: Bot, update: Update, args: List[str]):
         fed_id = key_gen()
         fed_name = args[0]
 
-        # Hardcoded fed_id's
-        if fed_name == "Joker/Official-fed":
-                fed_id = "xGyFuGqhtAOfuESVYkvP"
-
+        
         if not sql.search_fed_by_name(fed_name) == False:
                 update.effective_message.reply_text("Already exists federation with this name, change name!")
                 return
@@ -81,7 +78,7 @@ def del_fed(bot: Bot, update: Update, args: List[str]):
         user = update.effective_user  # type: Optional[User]
         fed_id = sql.get_fed_id(chat.id)
 
-        if is_user_fed_owner(fed_id, user.id) == False:
+        if is_user_fed_owner(fed_id, user.id) == True:
                 update.effective_message.reply_text("Only fed owner can do this!")
                 return
 
