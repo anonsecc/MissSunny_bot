@@ -292,6 +292,13 @@ def me_too(bot: Bot, update: Update):
         message.reply_text(reply)
         
 @run_async
+def lol(bot: Bot, update: Update):
+    message = update.effective_message
+    if random.randint(0, 100) > 60:
+        reply = random.choice(["lmao", "Haha lel, lul", "Same lol", "lolololol"])
+        message.reply_text(reply)
+        
+@run_async
 def shout(bot: Bot, update: Update, args):
     if len(args) == 0:
         update.effective_message.reply_text("Where is text?")
@@ -348,6 +355,7 @@ VAPOR_HANDLER = DisableAbleCommandHandler("vapor", vapor, pass_args=True)
 MOCK_HANDLER = DisableAbleCommandHandler("mock", spongemocktext, admin_ok=True)
 SHOUT_HANDLER = DisableAbleCommandHandler("shout", shout, pass_args=True)
 ME_TOO_THANKS_HANDLER = DisableAbleRegexHandler(r"(?i)me too", me_too, friendly="me_too")
+LOL_HANDLER = DisableAbleRegexHandler(r"(?i)lol", lol, friendly="lol")
 
 
 dispatcher.add_handler(MAFIA_HANDLER)
@@ -372,3 +380,4 @@ dispatcher.add_handler(FORBES_HANDLER)
 dispatcher.add_handler(ME_TOO_THANKS_HANDLER)
 dispatcher.add_handler(KIM_HANDLER)
 dispatcher.add_handler(HITLER_HANDLER)
+dispatcher.add_handler(LOL_HANDLER)
