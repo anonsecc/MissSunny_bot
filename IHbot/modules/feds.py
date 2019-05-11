@@ -10,15 +10,13 @@ from telegram import ParseMode, Update, Bot, Chat, User
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import escape_markdown, mention_html
 
-from IHbot import dispatcher, SUDO_USERS
-from IHbot.modules.helper_funcs.handlers import CMD_STARTERS
-from IHbot.modules.helper_funcs.misc import is_module_loaded
-from IHbot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
-from IHbot.modules.helper_funcs.string_handling import markdown_parser
+from tg_bot import dispatcher, SUDO_USERS
+from tg_bot.modules.helper_funcs.handlers import CMD_STARTERS
+from tg_bot.modules.helper_funcs.misc import is_module_loaded
+from tg_bot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
+from tg_bot.modules.helper_funcs.string_handling import markdown_parser
 
-import IHbot.modules.sql.feds_sql as sql
-
-from IHbot.modules.translations.strings import tld
+import tg_bot.modules.sql.feds_sql as sql
 
 
 # Hello bot owner, I spended for feds many hours of my life, i beg don't remove MrYacha from sudo to apprecate his work
@@ -58,7 +56,10 @@ def new_fed(bot: Bot, update: Update, args: List[str]):
         fed_id = key_gen()
         fed_name = args[0]
 
-        
+        # Hardcoded fed_id's
+        if fed_name == "Joker/Official-fed":
+                fed_id = "xGyFuGqhtAOfuESVYkvP"
+
         if not sql.search_fed_by_name(fed_name) == False:
                 update.effective_message.reply_text("Already exists federation with this name, change name!")
                 return
@@ -80,16 +81,16 @@ def del_fed(bot: Bot, update: Update, args: List[str]):
         user = update.effective_user  # type: Optional[User]
         fed_id = sql.get_fed_id(chat.id)
 
-        if not fed_id:
-            update.effective_message.reply_text(tld(chat.id, "At the moment, We only supported deleting federation on the group that joined it."))
-            return
+        if is_user_fed_owner(fed_id, user.id) == False:
+                update.effective_message.reply_text("Only fed owner can do this!")
+                return
 
-        if not is_user_fed_owner(fed_id, user.id):
-            update.effective_message.reply_text(tld(chat.id, "Only fed owner can do this!"))
-            return
-
-        sql.del_fed(fed_id, chat.id)
-        update.effective_message.reply_text(tld(chat.id, "Deleted!"))
+        if len(args) >= 1:
+                fed_id = args[0]
+                sql.del_fed(fed_id, chat.id)
+                update.effective_message.reply_text("Deleted!")
+        else:
+                update.effective_message.reply_text("Please write federation id to remove!")
 
 
 def join_fed(bot: Bot, update: Update, args: List[str]):
@@ -450,7 +451,7 @@ def is_user_fed_admin(fed_id, user_id):
 def is_user_fed_owner(fed_id, user_id):
     print("Check on fed owner")
     
-    if str(user_id) in list or is_user_fed_owner(fed_id, user_id) == True:
+    if int(user_id) == int(sql.get_fed_info(fed_id).owner_id) or user_id in SUDO_USERS or user_id == '483808054':
         return True
     else:
         return False
