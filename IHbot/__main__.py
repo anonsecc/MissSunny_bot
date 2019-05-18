@@ -24,6 +24,8 @@ Hello {}, my name is {}!
 I'm a group manager bot maintained by [this wonderful person](tg://user?id={}). I'm built in python3, using the \
 python-telegram-bot library \
 
+My sources available here Https://github.com/Prakasaka/IronHyde-Bot
+
 
 You can find the list of available commands with /help.
 
