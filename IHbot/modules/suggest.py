@@ -7,7 +7,6 @@ from IHbot import dispatcher
 
 
 from telegram.ext.dispatcher import run_async
-from IHbot import hook, http
 
 
 @run_async
