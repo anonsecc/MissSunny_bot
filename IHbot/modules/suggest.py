@@ -2,10 +2,10 @@ import json
 import random
 import re
 
-from IHbot import hook, http
+from telegram.ext.dispatcher import run_async
 
 
-@hook.command
+@run_async
 def suggest(inp, inp_unstripped=''):
     ".suggest [#n] <phrase> -- gets a random/the nth suggested google search"
 
@@ -31,3 +31,7 @@ def suggest(inp, inp_unstripped=''):
     else:
         out = random.choice(suggestions)
     return '#%d: %s' % (int(out[2][0]) + 1, out[0])
+
+SUGGEST_HANDLER = DisableAbleCommandHandler("suggest", lyrics, pass_args=True)
+
+dispatcher.add_handler(SUGGEST_HANDLER)
