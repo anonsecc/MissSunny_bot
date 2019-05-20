@@ -10,7 +10,7 @@ from telegram.ext.dispatcher import run_async
 from IHbot import hook, http
 
 
-@hook.command
+@run_async
 def suggest(inp, inp_unstripped=''):
     ".suggest [#n] <phrase> -- gets a random/the nth suggested google search"
 
