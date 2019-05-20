@@ -2,7 +2,7 @@ import json
 import random
 import re
 
-from util import hook, http
+from IHbot import hook, http
 
 
 @hook.command
