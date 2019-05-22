@@ -11,7 +11,7 @@ import json
 import random
 import re
 
-from util import hook, http
+from sql import hook, http
 
 
 @run_async
