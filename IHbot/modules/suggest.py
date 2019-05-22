@@ -11,8 +11,6 @@ import json
 import random
 import re
 
-from sql import hook, http
-
 
 @run_async
 def suggest(inp, inp_unstripped=''):
