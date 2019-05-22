@@ -7,6 +7,8 @@ from IHbot import dispatcher
 
 from requests import get
 
+from util import hook, http
+
 import json
 import random
 import re
