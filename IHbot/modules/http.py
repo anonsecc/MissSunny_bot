@@ -78,13 +78,3 @@ def prepare_url(url, queries):
 
     return url
 
-
-def to_utf8(s):
-    if isinstance(s, unicode):
-        return s.encode('utf8', 'ignore')
-    else:
-        return str(s)
-
-
-def quote_plus(s):
-    return _quote_plus(to_utf8(s))http
