@@ -19,19 +19,18 @@ from IHbot.modules.helper_funcs.chat_status import is_user_admin
 from IHbot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hello {}, my name is {}!
+Heya {};), my name is {}!
 
-I'm a group manager bot maintained by [this wonderful person](tg://user?id={}). I'm built in python3, using the \
-python-telegram-bot library \
+I'm a group manager bot maintained by [this wonderful person](tg://user?id={}).
 
-My sources available here Https://github.com/Prakasaka/IronHyde-Bot
+My source is available [here](https://github.com/misssunnybot/MissSunny_bot/blob/master/IHbot/__main__.py).
 
 
 You can find the list of available commands with /help.
 
-[Click here to add me in your groups](https://telegram.me/TheThuggBot?startgroup=add)
+[Click here to add me in your groups](https://telegram.me/MissSunny_Bot?startgroup=add)
 
-Free Hai Bro!
+Free Hu Mai ;)
 """
 
 HELP_STRINGS = """
