@@ -13,6 +13,7 @@ from telegram.utils.helpers import escape_markdown, mention_html
 from IHbot import dispatcher, SUDO_USERS
 from IHbot.modules.helper_funcs.handlers import CMD_STARTERS
 from IHbot.modules.helper_funcs.misc import is_module_loaded
+from IHbot.modules.helper_funcs.misc import send_to_list
 from IHbot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from IHbot.modules.helper_funcs.string_handling import markdown_parser
 
