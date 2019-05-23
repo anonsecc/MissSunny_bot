@@ -13,7 +13,6 @@ from telegram.utils.helpers import escape_markdown, mention_html
 from IHbot import dispatcher, SUDO_USERS
 from IHbot.modules.helper_funcs.handlers import CMD_STARTERS
 from IHbot.modules.helper_funcs.misc import is_module_loaded
-from IHbot.modules.helper_funcs.misc import send_to_list
 from IHbot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from IHbot.modules.helper_funcs.string_handling import markdown_parser
 
@@ -284,10 +283,6 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
     user = update.effective_user  # type: Optional[User]
     fed_id = sql.get_fed_id(chat.id)
     info = sql.get_fed_info(fed_id)
-    OW = bot.get_chat(info.owner_id)
-    HAHA = OW.id
-    FEDADMIN = sql.all_fed_users(fed_id)
-    FEDADMIN.append(int(HAHA))
 
 
     if is_user_fed_admin(fed_id, user.id) == False:
@@ -339,17 +334,6 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
                 return
         except TelegramError:
             pass
-
-    send_to_list(bot, FEDADMIN,
-             "<b>New FedBan</b>" \
-             "\n<b>Fed:</b> {}" \
-             "\n<b>FedAdmin:</b> {}" \
-             "\n<b>User:</b> {}" \
-             "\n<b>User ID:</b> <code>{}</code>" \
-             "\n<b>Reason:</b> {}".format(info.fed_name, mention_html(user.id, user.first_name),
-                                   mention_html(user_chat.first_name),
-                                                reason), 
-            html=True)
    
 @run_async
 def unfban(bot: Bot, update: Update, args: List[str]):
