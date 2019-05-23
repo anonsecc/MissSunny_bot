@@ -41,7 +41,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("Kaash main Is Chu Admin ko Ban kar Pata :p")
+        message.reply_text("Kaash main Is Chu Admin ko Ban kar Pati :p")
         return ""
 
     if user_id == bot.id:
@@ -61,7 +61,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
     try:
         chat.kick_member(user_id)
         bot.send_sticker(chat.id, BAN_STICKER)
-        message.reply_text("Master, that Chu has been Banned")
+        message.reply_text("That chu has been banned ;)")
         return log
 
     except BadRequest as excp:
@@ -104,7 +104,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("Kaash main Is Chu Admin ko Ban kar Pata :p")
+        message.reply_text("Kaash main Is Chu Admin ko Ban kar Pati :p")
         return ""
 
     if user_id == bot.id:
@@ -225,10 +225,10 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
 def kickme(bot: Bot, update: Update):
     user_id = update.effective_message.from_user.id
     if user_id == OWNER_ID:
-        update.effective_message.reply_text("Oof, I can't kick my master.")
+        update.effective_message.reply_text("Oof, I can't kick my creator :)")
         return 
     elif is_user_admin(update.effective_chat, user_id):
-          update.effective_message.reply_text("Kaash main Is Chu Admin ko Kick kar Pata :p.")
+          update.effective_message.reply_text("Kaash main Is Chu Admin ko Kick kar Pati :p.")
           return
 
     res = update.effective_chat.unban_member(user_id)  # unban on current user = kick
@@ -246,10 +246,10 @@ def banme(bot: Bot, update: Update):
     chat = update.effective_chat
     user = update.effective_user
     if user_id == OWNER_ID:
-        update.effective_message.reply_text("Oof, I can't ban my master.")
+        update.effective_message.reply_text("Oof, I can't ban my creator :)")
         return
     elif is_user_admin(update.effective_chat, user_id):
-        update.effective_message.reply_text("Kaash main Is Chu Admin ko Ban kar Pata :p.")
+        update.effective_message.reply_text("Kaash main Is Chu Admin ko Ban kar Pati :p.")
         return
 
     res = update.effective_chat.kick_member(user_id)
@@ -298,7 +298,7 @@ def unban(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     chat.unban_member(user_id)
-    message.reply_text("Now gib moni else ban again")
+    message.reply_text("Hehe 😈 ab yeh chu wapas ayega")
 
     log = "<b>{}:</b>" \
           "\n#UNBANNED" \
