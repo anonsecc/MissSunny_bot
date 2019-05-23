@@ -1,13 +1,13 @@
-# IHbot [![Docker Status](https://images.microbadger.com/badges/version/yashgarg/ironhyde.svg)](https://cloud.docker.com/repository/docker/yashgarg/ironhyde)
+# MissSunny_Bot [![Docker Status](https://images.microbadger.com/badges/version/yashgarg/ironhyde.svg)](https://cloud.docker.com/repository/docker/yashgarg/ironhyde)
 
 A modular telegram Python bot running on python3 with an sqlalchemy database.
 
 Originally a simple group management bot with multiple admin features, it has evolved, becoming extremely modular and 
 simple to use.
 
-Can be found on telegram as [IronHyde](https://t.me/IronHyde_bot).
+Can be found on telegram as [Sunny Leone](https://t.me/MissSunny_bot).
 
-Alternatively, [find me on telegram](https://t.me/smart_geek)!!
+Alternatively, [find me on telegram](https://t.me/noobvishal)!!
 
 ## Starting the bot.
 
