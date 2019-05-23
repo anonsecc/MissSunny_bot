@@ -35,6 +35,7 @@ Free Hu Mai ;)
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
+
 *I'm here to handle your group and maybe you 😉.*
 
 Commands which make me do things :/
