@@ -340,8 +340,8 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
              "\n<b>User:</b> {}" \
              "\n<b>User ID:</b> <code>{}</code>" \
              "\n<b>Reason:</b> {}".format(info.fed_name, mention_html(user.id, user.first_name),
-                                   mention_html(user_chat.id, user_chat.first_name),
-                                                user_chat.id, reason), 
+                                   mention_html(user_chat.first_name),
+                                                reason), 
             html=True)
    
 @run_async
