@@ -38,7 +38,7 @@ Hey there! My name is *{}*.
 
 *I'm here to handle your group and maybe you 😉*
 
-Commands which make me do things :/
+Commands which makes me do things :/
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
