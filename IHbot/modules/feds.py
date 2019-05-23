@@ -313,7 +313,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
     message.reply_text("Start fbanning!")
 
     if reason == "":
-        reason = "no reason"
+        reason = "No Reason have been given"
 
     sql.fban_user(fed_id, user_id, reason)
 
@@ -333,7 +333,17 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
         except TelegramError:
             pass
 
-
+     send_to_list(bot, FEDADMIN,
+             "<b>New FedBan</b>" \
+             "\n<b>Fed:</b> {}" \
+             "\n<b>FedAdmin:</b> {}" \
+             "\n<b>User:</b> {}" \
+             "\n<b>User ID:</b> <code>{}</code>" \
+             "\n<b>Reason:</b> {}".format(info.fed_name, mention_html(user.id, user.first_name),
+                                   mention_html(user_chat.id, user_chat.first_name),
+                                                user_chat.id, reason), 
+            html=True)
+   
 @run_async
 def unfban(bot: Bot, update: Update, args: List[str]):
     chat = update.effective_chat  # type: Optional[Chat]
