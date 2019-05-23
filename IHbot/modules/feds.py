@@ -282,6 +282,12 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
     fed_id = sql.get_fed_id(chat.id)
+    info = sql.get_fed_info(fed_id)
+    OW = bot.get_chat(info.owner_id)
+    HAHA = OW.id
+    FEDADMIN = sql.all_fed_users(fed_id)
+    FEDADMIN.append(int(HAHA))
+
 
     if is_user_fed_admin(fed_id, user.id) == False:
         update.effective_message.reply_text("Only fed admins can do this!")
@@ -333,7 +339,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
         except TelegramError:
             pass
 
-     send_to_list(bot, FEDADMIN,
+    send_to_list(bot, FEDADMIN,
              "<b>New FedBan</b>" \
              "\n<b>Fed:</b> {}" \
              "\n<b>FedAdmin:</b> {}" \
