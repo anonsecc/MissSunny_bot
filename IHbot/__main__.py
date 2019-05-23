@@ -36,7 +36,7 @@ Free Hu Mai ;)
 HELP_STRINGS = """
 Hey there! My name is *{}*.
 
-*I'm here to handle your group and maybe you 😉.*
+*I'm here to handle your group and maybe you 😉*
 
 Commands which make me do things :/
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
